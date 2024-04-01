@@ -3,7 +3,7 @@
 The source code and documentation for a tutorial series created by [Coding with Sphere](https://youtube.com/@codingwithsphere)
 
 ## Status
-- Code: 5%
+- Code: 10%
 - Video Series: 0%
 
 This repository contains the source code used as a guide for the PyGame Side scrolling Platformer.

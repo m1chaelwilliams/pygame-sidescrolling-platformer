@@ -2,6 +2,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.time import Clock
 from .tilemap import *
+from .camera import Camera
 
 class Game:
 	def __init__(self) -> None:
@@ -10,6 +11,10 @@ class Game:
 		self.clock: Clock = Clock()
 		self.running = True
 		self.tilemap = None
+		self.camera: Camera = Camera(Vec2.ZERO)
+		self.player_rect = Rect(
+			0,0,32,32
+		)
 	def run(self) -> None:
 		self.setup()
 		while self.running:
@@ -38,6 +43,25 @@ class Game:
 		for e in events:
 			if e.type == pygame.QUIT:
 				self.running = False
+			if e.type == pygame.KEYDOWN:
+				if e.key == pygame.K_q:
+					self.running = False
+					return
+		
+		# getting key held events
+		held = pygame.key.get_pressed()
+		if held[pygame.K_RIGHT]:
+			self.player_rect.x += 5
+		if held[pygame.K_LEFT]:
+			self.player_rect.x -= 5
+		if held[pygame.K_UP]:
+			self.player_rect.y -= 5
+		if held[pygame.K_DOWN]:
+			self.player_rect.y += 5
+
+		# updating the camera offset
+		self.camera.follow(self.player_rect, Vec2(*self.screen.get_size()))
+
 	def draw(self) -> None:
 		self.screen.fill('lightblue')
 
@@ -50,6 +74,10 @@ class Game:
 					# get pixel destinate x and y
 					x = x_index * self.tilemap.tilesize.x
 					y = y_index * self.tilemap.tilesize.y
+					# adjust for camera offset
+					x += self.camera.offset.x
+					y += self.camera.offset.y
+
 					# get texture coordinate of item
 					spritesheet_pos = Vec2(*self.tilemap.keymap.get(item, (0,0)))
 					# convert texture coordinate to rect area
@@ -65,5 +93,11 @@ class Game:
 						(x, y), 
 						rect_area
 					)
+		# draw player (temporary!)
+		pygame.draw.rect(
+			self.screen,
+			'red',
+			self.camera.add_offset_rect(self.player_rect)
+		)
 	def close(self) -> None:
 		pygame.quit()

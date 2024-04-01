@@ -1,6 +1,7 @@
 # Math utils that make life easier in the long run
 
 from pygame.math import Vector2
+from pygame import Rect
 
 class Vec2:
 	'''
@@ -74,6 +75,14 @@ class Vec2:
 
 	def __hash__(self) -> int:
 		return hash((self._x, self._y))
+	
+	def iter_f(self):
+		yield self._x
+		yield self._y
+
+	def iter_i(self):
+		yield self.x
+		yield self.y
 
 	def as_pgvec2(self) -> Vector2:
 		'''
@@ -93,3 +102,14 @@ class Vec2:
 		'''
 
 		return (self._x, self._y)
+	
+	@staticmethod
+	def from_rect(rect: Rect) -> 'Vec2':
+		return Vec2(
+			rect.x,
+			rect.y
+		)
+
+	ZERO: 'Vec2' = None
+
+Vec2.ZERO = Vec2(0,0)
