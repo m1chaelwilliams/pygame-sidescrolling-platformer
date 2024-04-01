@@ -3,6 +3,13 @@ from pygame import Surface, Rect
 from pygame.time import Clock
 from .tilemap import *
 from .camera import Camera
+from ..sprites import *
+
+def load_img_scaled(path: str, scale: float) -> Surface:
+	return pygame.transform.scale_by(
+		pygame.image.load(path).convert_alpha(),
+		scale
+	)
 
 class Game:
 	def __init__(self) -> None:
@@ -12,8 +19,10 @@ class Game:
 		self.running = True
 		self.tilemap = None
 		self.camera: Camera = Camera(Vec2.ZERO)
-		self.player_rect = Rect(
-			0,0,32,32
+		self.player = Player(
+			[],
+			load_img_scaled("assets/player_static.png", 4),
+			Vec2.ZERO
 		)
 	def run(self) -> None:
 		self.setup()
@@ -50,17 +59,10 @@ class Game:
 		
 		# getting key held events
 		held = pygame.key.get_pressed()
-		if held[pygame.K_RIGHT]:
-			self.player_rect.x += 5
-		if held[pygame.K_LEFT]:
-			self.player_rect.x -= 5
-		if held[pygame.K_UP]:
-			self.player_rect.y -= 5
-		if held[pygame.K_DOWN]:
-			self.player_rect.y += 5
-
+		# updating the player
+		self.player.update(events, held)
 		# updating the camera offset
-		self.camera.follow(self.player_rect, Vec2(*self.screen.get_size()))
+		self.camera.follow(self.player.rect, Vec2(*self.screen.get_size()))
 
 	def draw(self) -> None:
 		self.screen.fill('lightblue')
@@ -94,10 +96,6 @@ class Game:
 						rect_area
 					)
 		# draw player (temporary!)
-		pygame.draw.rect(
-			self.screen,
-			'red',
-			self.camera.add_offset_rect(self.player_rect)
-		)
+		self.player.draw(self.screen, self.camera.offset)
 	def close(self) -> None:
 		pygame.quit()

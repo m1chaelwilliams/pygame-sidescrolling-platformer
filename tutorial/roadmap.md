@@ -4,7 +4,7 @@
 1. [Setup + Window](./1.md)
 2. [Tile maps](./2.md)
 3. [Camera](./3.md)
-4. Player
+4. [Player](./4.md)
 5. Physics
 6. Platforms
 7. Changing Scenes
