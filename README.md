@@ -19,6 +19,9 @@ For written documentation, visit: [Documentation](./tutorial/roadmap.md).
 - `main.py` is the entry point of the application.
 - `platformer/` contains all of the source files (besides the entry point)
 - `tutorial/` contains `.md` files documenting (to the best of my ability) the changes made at each step.
+- `data/` contains data related to the game itself.
+	- maps
+- `assets` contains assets for the game.
 
 ## FAQ
 
