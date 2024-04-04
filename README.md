@@ -3,7 +3,7 @@
 The source code and documentation for a tutorial series created by [Coding with Sphere](https://youtube.com/@codingwithsphere)
 
 ## Status
-- Code: 10%
+- Code: 50%
 - Video Series: 0%
 
 This repository contains the source code used as a guide for the PyGame Side scrolling Platformer.
@@ -12,8 +12,7 @@ This repository contains the source code used as a guide for the PyGame Side scr
 
 For written documentation, visit: [Documentation](./tutorial/roadmap.md).
 
->[!info]
->Documentation is limited due to time constraints. It will improve with time. For now, use it as a guide. Much of the learning will have to come from reading actual code, which I believe is the best way to learn anyways.
+*Documentation is limited due to time constraints. It will improve with time. For now, use it as a guide. Much of the learning will have to come from reading actual code, which I believe is the best way to learn anyways.*
 
 ## Project Structure
 - `main.py` is the entry point of the application.
@@ -21,7 +20,7 @@ For written documentation, visit: [Documentation](./tutorial/roadmap.md).
 - `tutorial/` contains `.md` files documenting (to the best of my ability) the changes made at each step.
 - `data/` contains data related to the game itself.
 	- maps
-- `assets` contains assets for the game.
+- `assets/` contains assets for the game.
 
 ## FAQ
 
@@ -42,3 +41,4 @@ I do ask that you don't copy my documentation without crediting.
 ## Author
 Michael Williams (Coding with Sphere)
 - [My Website](https://codingwithsphere.com)
+- [Community Discord](https://discord.gg/BXBBJvABpp)
