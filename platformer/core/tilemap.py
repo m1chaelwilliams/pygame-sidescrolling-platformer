@@ -4,15 +4,17 @@ import csv
 from pygame.surface import Surface
 import pygame
 
-def csv_to_2dlist(filename: str) -> list[list[int]]:
+def csv_to_2dlist(filename: str) -> dict[Vec2, int]:
 	try:
-		data = []
+		data = {}
 
 		with open(filename, 'r') as f:
 			reader = csv.reader(f)
-			for row in reader:
-				row = [int(cell) for cell in row]
-				data.append(row)
+			for y,row in enumerate(reader):
+				for x, col in enumerate(row):
+					col_result = int(col)
+					if col_result > 0:
+						data[Vec2(x, y)] = col_result
 		return data
 	
 	except ValueError:
@@ -25,8 +27,7 @@ def csv_to_2dlist(filename: str) -> list[list[int]]:
 
 @dataclass
 class Tilemap:
-	tiles: list[list[int]] = None
-	tilesize: Vec2 = None
+	tiles: dict[Vec2, int] = None
 	spritesheet: Surface = None
 	keymap: dict[int, Vec2] = None
 
@@ -41,9 +42,6 @@ class TilemapBuilder:
 			pygame.image.load(filepath).convert_alpha(),
 			scale
 		)
-		return self
-	def set_tilesize(self, tilesize: Vec2) -> 'TilemapBuilder':
-		self._tilemap.tilesize = tilesize
 		return self
 	def set_tilekeymap(self, tilekeymap: dict[int, Vec2]) -> 'TilemapBuilder':
 		self._tilemap.keymap = tilekeymap

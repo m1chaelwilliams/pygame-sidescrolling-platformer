@@ -63,7 +63,7 @@ class Vec2:
 		return not self == other
 	
 	def __str__(self) -> str:
-		f"x: {self._x}, y: {self._y}"
+		return f"x: {self._x}, y: {self._y}"
 
 	def __getitem__(self, index) -> float:
 		return self.as_tupf()[index]

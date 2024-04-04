@@ -5,8 +5,9 @@
 2. [Tile maps](./2.md)
 3. [Camera](./3.md)
 4. [Player](./4.md)
-5. Physics
-6. Platforms
-7. Changing Scenes
-8. Enemies
-9. Menus
+5. [Delta Time](./5.md)
+6. Physics
+7. Platforms
+8. Changing Scenes
+9. Enemies
+10. Menus
