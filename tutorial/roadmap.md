@@ -6,7 +6,7 @@
 3. [Camera](./3.md)
 4. [Player](./4.md)
 5. [Delta Time](./5.md)
-6. Physics
+6. [Physics](./6.md)
 7. Platforms
 8. Changing Scenes
 9. Enemies
